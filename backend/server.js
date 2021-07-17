@@ -9,12 +9,16 @@ dotenv.config({ path: __dirname + '/.env' });
 //Connect to Database
 connectDB();
 
-console.log(process.env.PORT);
+//Route files
+const places = require('./routes/Place');
 
 const app = express();
 
 //Body parser
 app.use(express.json());
+
+//Mount routers
+app.use('/api/v1/places', places);
 
 const PORT = process.env.PORT || 5000;
 

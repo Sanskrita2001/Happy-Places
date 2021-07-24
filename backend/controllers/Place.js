@@ -67,3 +67,16 @@ exports.deletePlace = asyncHandler(async (req, res) => {
 	//Send a response
 	res.status(200).json({ success: true, data: {} });
 });
+
+exports.placePhotoUpload = asyncHandler(async (req, res) => {
+	let place = await Place.findById(req.params.id);
+	if (!place)
+		throw new ErrorResponse(`Place not found with ${req.params.id}`, 404);
+
+	if (!req.file) throw new ErrorResponse(`Please upload a file`, 404);
+
+	const file = req.file;
+
+	res.status(200).json({ success: true, data: file });
+	console.log(req.file);
+});

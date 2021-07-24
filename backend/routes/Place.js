@@ -7,9 +7,8 @@ const {
 	deletePlace,
 	placePhotoUpload,
 } = require('../controllers/Place');
+const upload = require('../middlewares/photoUpload');
 const router = express.Router();
-var multer = require('multer');
-var upload = multer({ dest: '../uploads/' });
 
 //Add routes
 router.route('/').post(createPlace).get(getPlaces);

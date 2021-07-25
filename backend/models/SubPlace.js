@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const geocoder = require('../utils/geocoder');
 
-const PlaceSchema = new mongoose.Schema(
+const SubPlaceSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -39,16 +39,31 @@ const PlaceSchema = new mongoose.Schema(
 			type: String,
 			default: 'no-photo.jpg',
 		},
+		carsAvailable: {
+			type: Boolean,
+			required: [true, 'Please add if cars available or not'],
+		},
+		minNoOfDaysStay: {
+			type: Number,
+		},
+		seasonalTiming: {
+			type: String,
+			enum: ['Spring', 'Summer', 'Monsoonal', 'Autumnal', 'Winter'],
+			required: [true, 'Please add a seasonal timing'],
+		},
+		place: {
+			type: mongoose.Schema.ObjectId,
+			ref: 'Place',
+			required: true,
+		},
 	},
 	{
 		timestamps: true,
-		toJSON: { virtuals: true },
-		toObject: { virtuals: true },
 	}
 );
 
 //Geocode & create a location field
-PlaceSchema.pre('save', async function (next) {
+SubPlaceSchema.pre('save', async function (next) {
 	const res = await geocoder.geocode(this.address);
 	this.location = {
 		type: 'Point',
@@ -64,19 +79,4 @@ PlaceSchema.pre('save', async function (next) {
 	next();
 });
 
-//Cascade delete subplaces when a place is deleted
-PlaceSchema.pre('remove', async function (next) {
-	console.log('SubPlaces removed!');
-	await this.model('SubPlace').deleteMany({ place: this._id });
-	next();
-});
-
-//Reverse-populate with virtuals
-PlaceSchema.virtual('subPlaces', {
-	ref: 'SubPlace',
-	localField: '_id',
-	foreignField: 'place',
-	justOne: false,
-});
-
-module.exports = mongoose.model('Place', PlaceSchema);
+module.exports = mongoose.model('SubPlace', SubPlaceSchema);

@@ -6,7 +6,10 @@ const asyncHandler = require('express-async-handler');
 //@route     GET  /api/v1/places/
 //@access    Public
 exports.getPlaces = asyncHandler(async (req, res) => {
-	const places = await Place.find();
+	const places = await Place.find().populate({
+		path: 'subPlaces',
+		select: 'name description',
+	});
 	//Send a response
 	res.status(200).json({ success: true, count: places.length, data: places });
 });

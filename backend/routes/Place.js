@@ -8,7 +8,14 @@ const {
 	placePhotoUpload,
 } = require('../controllers/Place');
 const upload = require('../middlewares/photoUpload');
+
+//Include other routers
+const subPlaceRouter = require('./SubPlace');
+
 const router = express.Router();
+
+//Re-route into other routers
+router.use('/:placeId/subplaces', subPlaceRouter);
 
 //Add routes
 router.route('/').post(createPlace).get(getPlaces);

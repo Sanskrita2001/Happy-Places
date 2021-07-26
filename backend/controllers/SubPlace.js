@@ -17,6 +17,7 @@ exports.getSubPlaces = asyncHandler(async (req, res) => {
 			select: 'name description',
 		});
 	}
+	query.populate({ path: 'spots', select: 'name description' });
 	const subPlaces = await query;
 	//Send a response
 	res

@@ -39,13 +39,9 @@ const SpotSchema = new mongoose.Schema(
 			type: String,
 			default: 'no-photo.jpg',
 		},
-		openHoursStart: {
-			type: Number,
-			required: [true, 'Please enter the start time of open hours'],
-		},
-		openHoursEnd: {
-			type: Number,
-			required: [true, 'Please enter the end time of open hours'],
+		openHours: {
+			start: { type: Number },
+			end: { type: Number },
 		},
 		daysClosed: {
 			type: [String],
@@ -57,9 +53,8 @@ const SpotSchema = new mongoose.Schema(
 				'Thursday',
 				'Friday',
 				'Saturday',
-				'none',
 			],
-			required: [true, 'Please add the closed days'],
+			default: undefined,
 		},
 		entryFee: {
 			type: Number,
@@ -72,8 +67,11 @@ const SpotSchema = new mongoose.Schema(
 			type: Number,
 			required: true,
 		},
+		optional: {
+			type: String,
+		},
 		subplace: {
-			type: mongoose.Schema.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: 'SubPlace',
 			required: true,
 		},

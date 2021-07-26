@@ -59,6 +59,8 @@ const SubPlaceSchema = new mongoose.Schema(
 	},
 	{
 		timestamps: true,
+		toJSON: { virtuals: true },
+		toObject: { virtuals: true },
 	}
 );
 
@@ -77,6 +79,14 @@ SubPlaceSchema.pre('save', async function (next) {
 	//Do not save address in DB
 	this.address = undefined;
 	next();
+});
+
+//Reverse-populate with virtuals
+SubPlaceSchema.virtual('spots', {
+	ref: 'Spot',
+	localField: '_id',
+	foreignField: 'subplace',
+	justOne: false,
 });
 
 module.exports = mongoose.model('SubPlace', SubPlaceSchema);

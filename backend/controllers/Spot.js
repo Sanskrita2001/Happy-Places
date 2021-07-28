@@ -22,6 +22,21 @@ exports.getSpots = asyncHandler(async (req, res) => {
 	res.status(200).json({ success: true, count: spots.length, data: spots });
 });
 
+//@desc      get single places
+//@route     GET  /api/v1/spots/:id
+//@access    Public
+exports.getSpot = asyncHandler(async (req, res) => {
+	const spot = await Spot.findById(req.params.id).populate({
+		path: 'subplace',
+		select: 'name description',
+	});
+	if (!spot) {
+		throw new ErrorResponse(`Spot not found with ${req.params.id}`, 404);
+	}
+	//Send a response
+	res.status(200).json({ success: true, data: spot });
+});
+
 //@desc      add new spot
 //@route     POST  /api/v1/subplaces/:subplaceId/spots
 //@access    Private

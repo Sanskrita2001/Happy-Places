@@ -1,10 +1,16 @@
 import React from 'react'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+
+import Navbar from './components/Navbar'
+
+import HomeScreen from './screens/HomeScreen'
 
 const App = () => {
 	return (
-		<div>
-			<h1>Hello</h1>	
-		</div>
+		<Router>
+			<Navbar/>	
+			<Route exact path='/' component={HomeScreen}/>
+		</Router>
 	)
 }
 

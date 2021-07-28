@@ -1,5 +1,5 @@
 const Place = require('../models/Place');
-const ErrorResponse = require('../utils/errorResponse');
+const ErrorResponse = require('../utils/ErrorResponse');
 const asyncHandler = require('express-async-handler');
 
 //@desc      get all places
@@ -68,6 +68,11 @@ exports.deletePlace = asyncHandler(async (req, res) => {
 	res.status(200).json({ success: true, data: {} });
 });
 
+
+
+//@desc      Upload a photo
+//@route     POST  /api/v1/places/:id/photo
+//@access    Private
 exports.placePhotoUpload = asyncHandler(async (req, res) => {
 	let place = await Place.findById(req.params.id);
 	if (!place)
@@ -78,5 +83,7 @@ exports.placePhotoUpload = asyncHandler(async (req, res) => {
 	const file = req.file;
 
 	res.status(200).json({ success: true, data: file });
-	console.log(req.file);
+	console.log(file);
+
+	//Save the file variable in mongoDB
 });

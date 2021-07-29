@@ -12,6 +12,8 @@ connectDB();
 
 //Route files
 const places = require('./routes/Place');
+const subplaces = require('./routes/SubPlace');
+const spots = require('./routes/Spot');
 
 const app = express();
 
@@ -20,6 +22,8 @@ app.use(express.json());
 
 //Mount routers
 app.use('/api/v1/places', places);
+app.use('/api/v1/subplaces', subplaces);
+app.use('/api/v1/spots/', spots);
 
 app.use(errorHandler);
 

@@ -55,3 +55,30 @@ exports.addSpot = asyncHandler(async (req, res) => {
 	//Send a response
 	res.status(201).json({ success: true, data: spot });
 });
+
+//@desc      update spot
+//@route     PUT  /api/v1/spots/:id
+//@access    Private
+exports.updateSpot = asyncHandler(async (req, res) => {
+	let spot = await Spot.findById(req.params.id);
+	if (!spot)
+		throw new ErrorResponse(`Spot not found with ${req.params.id}`, 404);
+	spot = await Spot.findByIdAndUpdate(req.params.id, req.body, {
+		new: true,
+		runValidators: true,
+	});
+	//Send a response
+	res.status(200).json({ success: true, data: spot });
+});
+
+//@desc      delete spot
+//@route     DELETE  /api/v1/spots/:id
+//@access    Private
+exports.deleteSpot = asyncHandler(async (req, res) => {
+	let spot = await Spot.findById(req.params.id);
+	if (!spot)
+		throw new ErrorResponse(`Sub-Place not found with ${req.params.id}`, 404);
+	spot.remove();
+	//Send a response
+	res.status(200).json({ success: true, data: {} });
+});

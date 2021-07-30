@@ -14,6 +14,7 @@ connectDB();
 const places = require('./routes/Place');
 const subplaces = require('./routes/SubPlace');
 const spots = require('./routes/Spot');
+const hotels = require('./routes/Hotel');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use('/api/v1/places', places);
 app.use('/api/v1/subplaces', subplaces);
 app.use('/api/v1/spots/', spots);
+app.use('/api/v1/hotels/', hotels);
 
 app.use(errorHandler);
 

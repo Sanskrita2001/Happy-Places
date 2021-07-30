@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const geocoder = require('../utils/geocoder');
 
-const SubPlaceSchema = new mongoose.Schema(
+const HotelSchema = new mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -30,49 +30,29 @@ const SubPlaceSchema = new mongoose.Schema(
 			zipcode: String,
 			country: String,
 		},
-		averageRating: {
-			type: Number,
-			min: [1, 'Rating must be at least 1'],
-			max: [10, 'Rating must not be more than 10'],
-		},
-		photo: {
+		website: {
 			type: String,
-			default: 'no-photo.jpg',
+			match: [
+				/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+				'Please use a valid URL with HTTP or HTTPS',
+			],
 		},
-		carsAvailable: {
-			type: Boolean,
-			required: [true, 'Please add if cars available or not'],
+		openHours: {
+			start: { type: Number },
+			end: { type: Number },
 		},
-		minNoOfDaysStay: {
-			type: Number,
-		},
-		seasonalTiming: {
+		typeOfHotel: {
 			type: String,
-			enum: ['Spring', 'Summer', 'Monsoonal', 'Autumnal', 'Winter'],
-			required: [true, 'Please add a seasonal timing'],
-		},
-		hotel: [
-			{
-				type: mongoose.Schema.ObjectId,
-				ref: 'Hotel',
-				required: true,
-			},
-		],
-		place: {
-			type: mongoose.Schema.ObjectId,
-			ref: 'Place',
-			required: true,
+			enum: ['HomeStay', 'Fooding', 'Both'],
 		},
 	},
 	{
 		timestamps: true,
-		toJSON: { virtuals: true },
-		toObject: { virtuals: true },
 	}
 );
 
 //Geocode & create a location field
-SubPlaceSchema.pre('save', async function (next) {
+HotelSchema.pre('save', async function (next) {
 	const res = await geocoder.geocode(this.address);
 	this.location = {
 		type: 'Point',
@@ -88,12 +68,4 @@ SubPlaceSchema.pre('save', async function (next) {
 	next();
 });
 
-//Reverse-populate with virtuals
-SubPlaceSchema.virtual('spots', {
-	ref: 'Spot',
-	localField: '_id',
-	foreignField: 'subplace',
-	justOne: false,
-});
-
-module.exports = mongoose.model('SubPlace', SubPlaceSchema);
+module.exports = mongoose.model('Hotel', HotelSchema);

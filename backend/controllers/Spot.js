@@ -1,6 +1,6 @@
 const SubPlace = require('../models/SubPlace');
 const Spot = require('../models/Spot');
-const ErrorResponse = require('../utils/errorResponse');
+const ErrorResponse = require('../utils/ErrorResponse');
 const asyncHandler = require('express-async-handler');
 
 //@desc      get all places

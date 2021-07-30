@@ -15,6 +15,7 @@ const places = require('./routes/Place');
 const subplaces = require('./routes/SubPlace');
 const spots = require('./routes/Spot');
 const hotels = require('./routes/Hotel');
+const auth = require('./routes/Auth');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api/v1/places', places);
 app.use('/api/v1/subplaces', subplaces);
 app.use('/api/v1/spots/', spots);
 app.use('/api/v1/hotels/', hotels);
+app.use('/api/v1/auth/', auth);
 
 app.use(errorHandler);
 

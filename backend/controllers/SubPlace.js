@@ -13,7 +13,7 @@ exports.getSubPlaces = asyncHandler(async (req, res) => {
 		query = SubPlace.find({ place: req.params.placeId });
 	} else {
 		query = SubPlace.find().populate({
-			path: 'place',
+			path: 'place hotel',
 			select: 'name description',
 		});
 	}
@@ -30,7 +30,7 @@ exports.getSubPlaces = asyncHandler(async (req, res) => {
 //@access    Public
 exports.getSubPlace = asyncHandler(async (req, res) => {
 	const subPlace = await SubPlace.findById(req.params.id).populate({
-		path: 'place',
+		path: 'place hotel',
 		select: 'name description',
 	});
 	if (!subPlace)

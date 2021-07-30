@@ -13,7 +13,7 @@ exports.getSpots = asyncHandler(async (req, res) => {
 		query = Spot.find({ subplace: req.params.subplaceId });
 	} else {
 		query = Spot.find().populate({
-			path: 'subplace',
+			path: 'subplace hotel',
 			select: 'name description',
 		});
 	}
@@ -27,7 +27,7 @@ exports.getSpots = asyncHandler(async (req, res) => {
 //@access    Public
 exports.getSpot = asyncHandler(async (req, res) => {
 	const spot = await Spot.findById(req.params.id).populate({
-		path: 'subplace',
+		path: 'subplace hotel',
 		select: 'name description',
 	});
 	if (!spot) {

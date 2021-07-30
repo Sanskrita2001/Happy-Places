@@ -59,10 +59,6 @@ const SpotSchema = new mongoose.Schema(
 		entryFee: {
 			type: Number,
 		},
-		accomodationAvailable: {
-			type: Boolean,
-			required: [true, 'Please enter if accomodation is available or not'],
-		},
 		minNoOfHrsVisit: {
 			type: Number,
 			required: true,
@@ -70,6 +66,13 @@ const SpotSchema = new mongoose.Schema(
 		optional: {
 			type: String,
 		},
+		hotel: [
+			{
+				type: mongoose.Schema.ObjectId,
+				ref: 'Hotel',
+				required: true,
+			},
+		],
 		subplace: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'SubPlace',

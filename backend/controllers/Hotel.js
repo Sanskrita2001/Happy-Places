@@ -41,7 +41,7 @@ exports.updateHotel = asyncHandler(async (req, res) => {
 	let hotel = await Hotel.findById(req.params.id);
 	if (!hotel)
 		throw new ErrorResponse(`Hotel not found with ${req.params.id}`, 404);
-	hotel = await hotel.findByIdAndUpdate(req.params.id, req.body, {
+	hotel = await Hotel.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 		runValidators: true,
 	});

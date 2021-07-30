@@ -6,7 +6,10 @@ const asyncHandler = require('express-async-handler');
 //@route     GET  /api/v1/places/
 //@access    Public
 exports.getPlaces = asyncHandler(async (req, res) => {
-	const places = await Place.find();
+	const places = await Place.find().populate({
+		path: 'subPlaces',
+		select: 'name description',
+	});
 	//Send a response
 	res.status(200).json({ success: true, count: places.length, data: places });
 });
@@ -68,9 +71,7 @@ exports.deletePlace = asyncHandler(async (req, res) => {
 	res.status(200).json({ success: true, data: {} });
 });
 
-
-
-//@desc      Upload a photo
+//@desc      upload photo
 //@route     POST  /api/v1/places/:id/photo
 //@access    Private
 exports.placePhotoUpload = asyncHandler(async (req, res) => {
@@ -81,6 +82,22 @@ exports.placePhotoUpload = asyncHandler(async (req, res) => {
 	if (!req.file) throw new ErrorResponse(`Please upload a file`, 404);
 
 	const file = req.file;
+
+	//check if file is an image file
+	if (!file.mimetype.startsWith('image'))
+		throw new ErrorResponse(`Please upload an image file`, 400);
+
+	//check file size
+	if (file.size > process.env.MAX_FILE_UPLOAD)
+		throw new ErrorResponse(
+			`Please upload an image file of size less than ${process.env.MAX_FILE_UPLOAD}`,
+			400
+		);
+
+	//create custom filename
+	const ext = file.mimetype.split('/')[1];
+	file.filename = `photo_${place._id}.${ext}`;
+	await Place.findByIdAndUpdate(req.params.id, { photo: file.filename });
 
 	res.status(200).json({ success: true, data: file });
 	console.log(file);

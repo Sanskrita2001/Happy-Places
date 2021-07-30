@@ -42,6 +42,8 @@ const PlaceSchema = new mongoose.Schema(
 	},
 	{
 		timestamps: true,
+		toJSON: { virtuals: true },
+		toObject: { virtuals: true },
 	}
 );
 
@@ -61,4 +63,20 @@ PlaceSchema.pre('save', async function (next) {
 	this.address = undefined;
 	next();
 });
+
+//Cascade delete subplaces when a place is deleted
+PlaceSchema.pre('remove', async function (next) {
+	console.log('SubPlaces removed!');
+	await this.model('SubPlace').deleteMany({ place: this._id });
+	next();
+});
+
+//Reverse-populate with virtuals
+PlaceSchema.virtual('subPlaces', {
+	ref: 'SubPlace',
+	localField: '_id',
+	foreignField: 'place',
+	justOne: false,
+});
+
 module.exports = mongoose.model('Place', PlaceSchema);

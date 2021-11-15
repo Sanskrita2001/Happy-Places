@@ -2,10 +2,11 @@ import {createStore, combineReducers, applyMiddleware} from 'redux'
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension'
 
-import {getPlacesReducer} from './reducers/placeReducer'
+import {getPlacesReducer, getSinglePlaceReducer} from './reducers/placeReducer'
 
 const reducer = combineReducers({
-      getAllPlaces: getPlacesReducer
+      getAllPlaces: getPlacesReducer,
+      getSinglePlace: getSinglePlaceReducer
 })
 
 const initialState = {

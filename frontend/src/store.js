@@ -3,10 +3,13 @@ import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension'
 
 import {getPlacesReducer, getSinglePlaceReducer} from './reducers/placeReducer'
+import {getSingleSubPlaceReducer, getSubPlacesReducer} from './reducers/subPlaceReducer'
 
 const reducer = combineReducers({
       getAllPlaces: getPlacesReducer,
-      getSinglePlace: getSinglePlaceReducer
+      getSinglePlace: getSinglePlaceReducer,
+      getAllSubPlaces: getSubPlacesReducer,
+      getSingleSubPlace: getSingleSubPlaceReducer
 })
 
 const initialState = {

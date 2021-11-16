@@ -1,6 +1,12 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 
 const PlaceComponent = ({place}) => {
+    const history = useHistory()
+
+    const onClick = () =>{
+        history.push(`/subplace/${place.id}`)
+    }
     console.log(place)
     return (
         <div className='text-3xl text-center border-4 border-gray-800 rounded-md'>
@@ -15,6 +21,7 @@ const PlaceComponent = ({place}) => {
                 <p className="text-gray-700 text-base">Nearest airport is<span className='font-bold'>: {place.airport}</span></p>
                 <p className="text-gray-700 text-base">Nearest railway station is<span className='font-bold'>: {place.railwayStation}</span></p>
             </div>
+            <button onClick={onClick} className='bg-red-800 text-white px-7'>Explore</button>
         </div>
     )
 }

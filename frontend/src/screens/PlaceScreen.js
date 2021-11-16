@@ -38,7 +38,7 @@ const PlaceScreen = () => {
             {loading===true && <Loader/>}
             {error && <Error message={error}/>}
             {loading=== false && !error && (
-                <div className="h-64 grid grid-cols-1 md:grid-cols-3 container mx-auto my-5">
+                <div className="h-64 grid grid-cols-1 md:grid-cols-3 gap-4 container mx-auto my-5">
                     {places.map(place => <PlaceComponent key={place.id} place={place}/>)}
                 </div>
             )}

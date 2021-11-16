@@ -37,8 +37,13 @@ const PlaceSchema = new mongoose.Schema(
 		},
 		photo: {
 			type: String,
-			default: 'no-photo.jpg',
 		},
+		airport: {
+			type: String
+		},
+		railwayStation: {
+			type: String
+		}
 	},
 	{
 		timestamps: true,

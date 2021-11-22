@@ -79,6 +79,18 @@ const Navbar = () => {
 
 								<Link
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
+									to='/places'>
+									Places
+								</Link>
+
+								<Link
+									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
+									to='/subplace/:id'>
+									Sub Places
+								</Link>
+
+								<Link
+									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
 									to='/about'>
 									About
 								</Link>
@@ -87,12 +99,6 @@ const Navbar = () => {
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
 									to='/team'>
 									Team
-								</Link>
-
-                                <Link
-									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
-									to='/testimonials'>
-									Testimonials
 								</Link>
 
 								<Link

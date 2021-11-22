@@ -11,12 +11,10 @@ import SubPlace from './screens/SubPlace'
 const App = () => {
 	return (
 		<Router>
-			<main>
 			<Navbar/>	
 				<Route exact path='/' component={HomeScreen}/>
 				<Route exact path='/places' component={PlaceScreen}/>
 				<Route exact path='/subplace/:id' component={SubPlace}/>
-			</main>
 			<Footer/>
 		</Router>
 	)

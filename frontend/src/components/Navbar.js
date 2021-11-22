@@ -6,7 +6,7 @@ const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	return (
 		<>
-			<nav className='p-5 bg-dark'>
+			<nav className='p-5 bg-dark fixed w-full z-30 top-0'>
 				<div className='flex flex-col md:flex-row justify-end text-white'>
 					<div className='flex-shrink-0 mr-auto'>
 						<img

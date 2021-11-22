@@ -29,13 +29,16 @@ exports.getPlace = asyncHandler(async (req, res) => {
 //@route     POST  /api/v1/places/
 //@access    Private
 exports.createPlace = asyncHandler(async (req, res) => {
-	const { name, description, address, location, averageRating } = req.body;
+	const { name, description, address, location, averageRating, airport, railwayStation, photo } = req.body;
 	const place = await Place.create({
 		name,
 		description,
 		address,
 		location,
 		averageRating,
+		airport,
+		photo,
+		railwayStation
 	});
 	if (!place) {
 		throw new ErrorResponse('Couldnt add a place', 404);

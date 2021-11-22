@@ -1,5 +1,5 @@
 const asyncHandler = require('express-async-handler');
-const ErrorResponse = require('../utils/errorResponse');
+const ErrorResponse = require('../utils/ErrorResponse');
 const User = require('../models//User');
 
 // @desc    Register User

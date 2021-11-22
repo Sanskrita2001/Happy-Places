@@ -1,12 +1,14 @@
 import React from 'react'
 
 const Footer = () => {
-    return (
-        <footer className='bg-black text-white flex flex-wrap justify-center'>
-            <div className="text-3xl font-bold flex-col">Happy Places</div>
-            <div className="text-l flex-col my-2 px-3">Copyright 2021 | All rights reserved</div>
-        </footer>
-    )
+	return (
+		<div className='bg-black flex flex-col justify-center items-center pt-2 w-full '>
+            <div className="text-m text-white font-bold block">Happy Places</div>
+			<p className='pb-2 text-center text-xs lg:text-sm leading-none text-white'>
+				Copyright 2021 Happy Places | All rights reserved.
+			</p>
+		</div>
+	)
 }
 
 export default Footer

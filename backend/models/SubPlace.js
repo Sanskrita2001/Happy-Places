@@ -39,9 +39,15 @@ const SubPlaceSchema = new mongoose.Schema(
 			type: String,
 			default: 'no-photo.jpg',
 		},
-		carsAvailable: {
-			type: Boolean,
-			required: [true, 'Please add if cars available or not'],
+		transport: {
+			type: String,
+			required: [true, 'Please enter the transports that are available']
+		},
+		distance: {
+			type: Number,
+		},
+		timeTaken: {
+			type: String,
 		},
 		minNoOfDaysStay: {
 			type: Number,
@@ -51,13 +57,6 @@ const SubPlaceSchema = new mongoose.Schema(
 			enum: ['Spring', 'Summer', 'Monsoonal', 'Autumnal', 'Winter'],
 			required: [true, 'Please add a seasonal timing'],
 		},
-		hotel: [
-			{
-				type: mongoose.Schema.ObjectId,
-				ref: 'Hotel',
-				required: true,
-			},
-		],
 		place: {
 			type: mongoose.Schema.ObjectId,
 			ref: 'Place',

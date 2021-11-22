@@ -66,13 +66,6 @@ const SpotSchema = new mongoose.Schema(
 		optional: {
 			type: String,
 		},
-		hotel: [
-			{
-				type: mongoose.Schema.ObjectId,
-				ref: 'Hotel',
-				required: true,
-			},
-		],
 		subplace: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'SubPlace',

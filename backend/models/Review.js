@@ -1,7 +1,15 @@
 const mongoose = require('mongoose');
 
 const ReviewSchema = new mongoose.Schema(
-	{
+	{	
+		userName: {
+			type: String,
+			required: [true, 'Please enter your name']
+		},
+		phone: {
+			type: Number,
+			required: [true, 'Please ennter your phone number']
+		},
 		title: {
 			type: String,
 			trim: true,

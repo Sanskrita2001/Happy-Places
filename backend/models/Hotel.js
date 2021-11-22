@@ -45,6 +45,14 @@ const HotelSchema = new mongoose.Schema(
 			type: String,
 			enum: ['HomeStay', 'Fooding', 'Both'],
 		},
+		subplace: 	{
+			type: mongoose.Schema.ObjectId,
+			ref: 'SubPlace',
+		},
+		place: 	{
+			type: mongoose.Schema.ObjectId,
+			ref: 'Place',
+		}
 	},
 	{
 		timestamps: true,

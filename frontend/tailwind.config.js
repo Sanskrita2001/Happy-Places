@@ -6,6 +6,7 @@ module.exports = {
 			colors: {
 				// Configure your color palette here
 				dark: '#011627',
+				redColor: '#E71D36'
 			},
 		},
 	},

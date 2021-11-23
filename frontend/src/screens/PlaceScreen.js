@@ -33,7 +33,7 @@ const PlaceScreen = () => {
 					<div className='mt-20'>
 						<div className='absolute z-20 top-20 w-full flex items-center rounded-full '>
 							<input
-								className='border-2 border-gray-500 bg-white placeholder-black opacity-80 h-14 mx-auto w-1/2 px-20 pr-16 rounded-lg text-sm focus:outline-none'
+								className='border-2 border-gray-500 bg-white placeholder-lg placeholder-black opacity-80 h-14 mx-auto w-1/2 px-20 pr-16 rounded-lg text-sm focus:outline-none'
 								type='search'
 								name='search'
 								placeholder='Search for places you wanna visit'
@@ -54,16 +54,17 @@ const PlaceScreen = () => {
 						width='100%'
 						height='100%'
 				/>
-                </section>
 				{loading === true && <Loader />}
 				{error && <Error message={error} />}
 				{loading === false && !error && (
-					<div className='h-64 grid grid-cols-1 md:grid-cols-3 gap-4 container mx-auto my-5'>
+					<div className='absolute z-20 -top-32 p-20 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-20'>
 						{places.map((place) => (
 							<PlaceComponent key={place.id} place={place} />
 						))}
 					</div>
 				)}
+                </section>
+				
 			</div>
 		</>
 	)

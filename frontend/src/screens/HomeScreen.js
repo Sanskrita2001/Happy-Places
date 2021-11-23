@@ -3,7 +3,7 @@ import React from 'react'
 const HomeScreen = () => {
     return (
         <div className= "main-container">
-            <section className="one relative">
+            <section className="one relative mt-20">
                 <img className="paperplane absolute z-20 top-12 right-20" src="https://imgur.com/2fLqy9q.png" alt="Paperplane" />
                 <img className="home-bg-img" src="https://imgur.com/oeqleuG.png" alt="Home Backgroung Image" width="100%" height="100%" />
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-5/6 w-11/12 backdrop-filter backdrop-blur-lg rounded-3xl border-2 border-solid border-white z-10 bg-gradient-to-br from bg-grey-500 bg-opacity-60 to bg-grey-500 bg-opacity-5"></div>

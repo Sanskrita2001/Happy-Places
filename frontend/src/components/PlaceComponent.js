@@ -29,7 +29,7 @@ const PlaceComponent = ({ place }) => {
 					</p>
                     <button
 						onClick={onClick}
-						className='absolute rounded-l-3xl z-40 top-0 h-10 right-0 bg-redColor text-white px-7'>
+						className='absolute z-40 top-0 h-10 right-0 bg-redColor text-white px-7'>
 						Explore
 					</button>
 					<div className='absolute bottom-0 w-full p-5 bg-dark backdrop-filter backdrop-blur-xl text-white'>

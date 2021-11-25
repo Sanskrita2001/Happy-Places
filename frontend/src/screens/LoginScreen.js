@@ -35,7 +35,7 @@ const LoginScreen = () => {
 	return (
 		<div className= "overflow-y-hidden">
       <img className="home-bg-img" src="https://imgur.com/oeqleuG.png" alt="Home Backgroung Image" width="100%" height="100%" />
-			<div className='min-h-screen'>
+			<div className=''>
 				<div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-2/3 w-11/12 backdrop-filter backdrop-blur-lg rounded-3xl border-2 border-solid border-white z-10 bg-gradient-to-br from bg-grey-500 bg-opacity-60 to bg-grey-500 bg-opacity-5'>
 					<h1 className='text-3xl text-center font-bold my-5'>
 						Please Login to Continue

@@ -8,6 +8,8 @@ import HomeScreen from './screens/HomeScreen'
 import PlaceScreen from './screens/PlaceScreen'
 import SubPlace from './screens/SubPlace'
 import SpotScreen from './screens/SpotScreen'
+import RegisterScreen from './screens/RegisterScreen'
+import LoginScreen from './screens/LoginScreen'
 
 const App = () => {
 	return (
@@ -17,6 +19,8 @@ const App = () => {
 				<Route exact path='/places' component={PlaceScreen}/>
 				<Route exact path='/subplace/:id' component={SubPlace}/>
 				<Route exact path='/spots/:id' component={SpotScreen}/>
+				<Route exact path='/register' component={RegisterScreen}/>
+				<Route exact path='/login' component={LoginScreen}/>
 			<Footer/>
 		</Router>
 	)

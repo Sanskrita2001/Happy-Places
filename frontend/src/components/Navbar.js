@@ -109,8 +109,14 @@ const Navbar = () => {
 
 								<Link
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
+                                    to='/register'>
+									Register
+								</Link>
+
+								<Link
+									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
                                     to='/login'>
-									Login/ Sign Up
+									Login
 								</Link>
 
 								{/* <Link

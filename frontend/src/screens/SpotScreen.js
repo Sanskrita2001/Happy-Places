@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {listSpots} from '../actions/spotActions'
 import SpotComponent from '../components/SpotComponent'
@@ -11,13 +11,15 @@ const SpotScreen = ({match}) => {
     const getSpots = useSelector(state => state.getSpots)
     const {spots, loading, error} = getSpots
 
+	const [spotfilter, setSpotfilter] = useState('')
     // console.log(listSpots)
 
     const id = match.params.id
     useEffect(()=>{
         dispatch(listSpots(id))
     }, [dispatch, id])
-    console.log(spots)
+	let filteredspots = spots.filter((item)=>(item.name.startsWith(spotfilter.charAt(0).toUpperCase()+spotfilter.slice(1))))
+
     return (
         <>
 			<div className='main-container'>
@@ -36,6 +38,8 @@ const SpotScreen = ({match}) => {
 								type='search'
 								name='search'
 								placeholder='Search for places you wanna visit'
+								value={spotfilter}
+								onChange={(e)=>setSpotfilter(e.target.value)}
 							/>
 							<div className='p-4'>
 								<button className='text-black rounded-full p-2 focus:outline-none w-12 h-12 flex items-center justify-center'>
@@ -57,7 +61,7 @@ const SpotScreen = ({match}) => {
 				{error && <Error message={error} />}
 				{loading === false && !error && (
 					<div className='absolute z-20 -top-32 p-20 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-20'>
-						{spots.map((spot) => (
+						{filteredspots.map((spot) => (
 							<SpotComponent key={spot.id} spot={spot} />
 						))}
 					</div>

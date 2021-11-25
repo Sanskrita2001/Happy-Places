@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { listPlaces } from '../actions/placeActions'
@@ -12,6 +12,7 @@ const PlaceScreen = () => {
 	const getAllPlaces = useSelector((state) => state.getAllPlaces)
 	const { places, loading, error } = getAllPlaces
 
+	const [filter, setFilter] = useState("")
 	useEffect(() => {
 		dispatch(listPlaces())
 	}, [dispatch])
@@ -19,6 +20,8 @@ const PlaceScreen = () => {
 	if (places !== undefined) {
 		console.log(places)
 	}
+
+	let filteredplaces = places.filter((item)=>(item.name.startsWith(filter.charAt(0).toUpperCase()+filter.slice(1))))
 	return (
 		<>
 			<div className='main-container'>
@@ -37,6 +40,8 @@ const PlaceScreen = () => {
 								type='search'
 								name='search'
 								placeholder='Search for places you wanna visit'
+								value={filter}
+								onChange={(e)=>setFilter(e.target.value)}
 							/>
 							<div className='p-4'>
 								<button className='text-black rounded-full p-2 focus:outline-none w-12 h-12 flex items-center justify-center'>
@@ -58,7 +63,7 @@ const PlaceScreen = () => {
 				{error && <Error message={error} />}
 				{loading === false && !error && (
 					<div className='absolute z-20 -top-32 p-20 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-20'>
-						{places.map((place) => (
+						{filteredplaces.map((place) => (
 							<PlaceComponent key={place.id} place={place} />
 						))}
 					</div>

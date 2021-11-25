@@ -31,12 +31,13 @@ const RegisterScreen = () => {
     }, [userInfo, history])
     console.log(error)
     return (
-      <div className="mt-24">
+      <div>
       {error && <Error variant='danger' message={error}/>}
       {loading && <Loader/>}
-        <div className="bg-gray-200 mx-16 border-4 border-gray-900 rounded-lg  text-blue-900 md:mb-12">
-      <div className="text-center font-bold text-4xl">
-        Employee Registration
+      <img className="home-bg-img" src="https://imgur.com/oeqleuG.png" alt="Home Backgroung Image" width="100%" height="100%" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-2/3 w-11/12 backdrop-filter backdrop-blur-lg rounded-3xl border-2 border-solid border-white z-10 bg-gradient-to-br from bg-grey-500 bg-opacity-60 to bg-grey-500 bg-opacity-5">
+      <div className="text-center font-bold text-4xl mt-5">
+        User Registration
       </div>
       <form className="py-4" onSubmit={onSubmit}>
         <div className="grid grid-flow-row md:grid-cols-2 md:grid-rows-2 gap-4">
@@ -88,7 +89,7 @@ const RegisterScreen = () => {
           <div className="m-auto">
             <input
               type="submit"
-              className="my-3 py-3 md:w-72 bg-indigo-900 text-white border-2 rounded-lg"
+              className="my-3 py-3 md:w-72 bg-dark text-white border-2 rounded-lg"
             />
           </div>
         </div>

@@ -40,8 +40,8 @@ const SpotSchema = new mongoose.Schema(
 			default: 'no-photo.jpg',
 		},
 		openHours: {
-			start: { type: Number },
-			end: { type: Number },
+			start: { type: String },
+			end: { type: String },
 		},
 		daysClosed: {
 			type: [String],
@@ -57,7 +57,7 @@ const SpotSchema = new mongoose.Schema(
 			default: undefined,
 		},
 		entryFee: {
-			type: Number,
+			type: String,
 		},
 		minNoOfHrsVisit: {
 			type: Number,
@@ -65,6 +65,12 @@ const SpotSchema = new mongoose.Schema(
 		},
 		optional: {
 			type: String,
+		},
+		distance: {
+			type: String
+		},
+		transport: {
+			type: String
 		},
 		subplace: {
 			type: mongoose.Schema.Types.ObjectId,

@@ -1,20 +1,23 @@
 import React, { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {listSubPlaces} from '../actions/subplaceActions'
-import SubPlaceComponent from '../components/SubPlaceComponent'
+import {listSpots} from '../actions/spotActions'
+import SpotComponent from '../components/SpotComponent'
 
 import Loader from '../components/Loader'
 import Error from '../components/Error'
 
-const SubPlace = ({match}) => {
+const SpotScreen = ({match}) => {
     const dispatch = useDispatch();
-    const getAllSubPlaces = useSelector(state => state.getAllSubPlaces)
-    const {subplaces, loading, error} = getAllSubPlaces
+    const getSpots = useSelector(state => state.getSpots)
+    const {spots, loading, error} = getSpots
+
+    // console.log(listSpots)
 
     const id = match.params.id
     useEffect(()=>{
-        dispatch(listSubPlaces(id))
+        dispatch(listSpots(id))
     }, [dispatch, id])
+    console.log(spots)
     return (
         <>
 			<div className='main-container'>
@@ -54,8 +57,8 @@ const SubPlace = ({match}) => {
 				{error && <Error message={error} />}
 				{loading === false && !error && (
 					<div className='absolute z-20 -top-32 p-20 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-20'>
-						{subplaces.map((place) => (
-							<SubPlaceComponent key={place.id} subplace={place} />
+						{spots.map((spot) => (
+							<SpotComponent key={spot.id} spot={spot} />
 						))}
 					</div>
 				)}
@@ -66,4 +69,4 @@ const SubPlace = ({match}) => {
     )
 }
 
-export default SubPlace
+export default SpotScreen

@@ -4,12 +4,14 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 
 import {getPlacesReducer, getSinglePlaceReducer} from './reducers/placeReducer'
 import {getSingleSubPlaceReducer, getSubPlacesReducer} from './reducers/subPlaceReducer'
+import {getSpotsReducer} from './reducers/spotReducer'
 
 const reducer = combineReducers({
       getAllPlaces: getPlacesReducer,
       getSinglePlace: getSinglePlaceReducer,
       getAllSubPlaces: getSubPlacesReducer,
-      getSingleSubPlace: getSingleSubPlaceReducer
+      getSingleSubPlace: getSingleSubPlaceReducer,
+      getSpots: getSpotsReducer
 })
 
 const initialState = {

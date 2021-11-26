@@ -4,6 +4,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const errorHandler = require('./middlewares/error');
 
+
 //Load env files
 dotenv.config({ path: __dirname + '/.env' });
 
@@ -17,6 +18,7 @@ const spots = require('./routes/Spot');
 const hotels = require('./routes/Hotel');
 const auth = require('./routes/Auth');
 const offbeat = require('./routes/Offbeat')
+const plan = require('./routes/Plan')
 
 const app = express();
 
@@ -29,7 +31,8 @@ app.use('/api/v1/subplaces', subplaces);
 app.use('/api/v1/spots/', spots);
 app.use('/api/v1/hotels/', hotels);
 app.use('/api/v1/auth/', auth);
-app.use('/api/v1/offbeat', offbeat)
+app.use('/api/v1/offbeat', offbeat);
+app.use('/api/v1/plan', plan)
 
 app.use(errorHandler);
 

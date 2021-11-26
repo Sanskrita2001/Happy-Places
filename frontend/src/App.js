@@ -13,16 +13,11 @@ import RegisterScreen from './screens/RegisterScreen'
 import LoginScreen from './screens/LoginScreen'
 import OffbearScreen from './screens/OffbearScreen'
 import AddOffbeat from './screens/AddOffbeat'
+import AddPlannerScreen from './screens/AddPlannerScreen'
 
-import { useHistory } from 'react-router-dom'
+import GetPlanScreen from './screens/GetPlanScreen'
 
 const AuthRoutes = () => {
-	const history = useHistory();
-  
-	// useEffect(() => {
-	//   history.push("/login");
-	// }, []);
-  
 	return (
 	  <>
 		<Router>
@@ -34,15 +29,6 @@ const AuthRoutes = () => {
   };
 const App = () => {
 	const user = JSON.parse(localStorage.getItem('userInfo'))
-	// const token = user.token
-	// if(token){
-	// 	return(
-	// 		<Router>
-	// 			<Navbar/>
-	// 			<Route exact path='/addoffbeat' component={AddOffbeat}/>
-	// 		</Router>
-	// 	)
-	// }
 	return (
 		<Router>
 			<Navbar/>	
@@ -55,6 +41,9 @@ const App = () => {
 				<Route exact path='/login' component={LoginScreen}/>
 				<Route exact path='/offbeat' component={OffbearScreen}/>
 				{user?<Route exact path='/addoffbeat' component={AddOffbeat}/> : <AuthRoutes/>}
+				{user?<Route exact path='/addplan' component={AddPlannerScreen}/> : <AuthRoutes/>}
+				{user?<Route exact path='/plan' component={GetPlanScreen}/> : <AuthRoutes/>}
+
 			<Footer/>
 		</Router>
 	)

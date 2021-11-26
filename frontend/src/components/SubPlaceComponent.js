@@ -18,7 +18,10 @@ const SubPlaceComponent = ({subplace}) => {
 	const onClick = () => {
 		history.push(`/spots/${subplace.id}`)
 	}
-	// console.log(subplace.place)
+	const onClickMap = () => {
+		history.push(`/map?lat=${subplace.location.coordinates[0]}&long=${subplace.location.coordinates[1]}`)
+	}
+	console.log(subplace)
 
 	return (
 		<div className='flip rounded-3xl overflow-hidden shadow-lg'>
@@ -36,6 +39,21 @@ const SubPlaceComponent = ({subplace}) => {
 					</div>
 				</div>
 				<div className='flip-back'>
+				<button
+						onClick={onClickMap}
+						className='absolute z-40 top-0 h-10 left-0 bg-redColor text-white px-3'>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							class='h-5 w-5'
+							viewBox='0 0 20 20'
+							fill='currentColor'>
+							<path
+								fill-rule='evenodd'
+								d='M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z'
+								clip-rule='evenodd'
+							/>
+						</svg>
+					</button>
 					<p className='text-black m-10 text-justify text-base'>
 						{subplace.description}
 					</p>

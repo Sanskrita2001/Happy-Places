@@ -101,11 +101,16 @@ const Navbar = () => {
 									Offbeat
 								</Link>
 
-                                <Link
+                                {user&&<Link
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
-									to='/team'>
-									Team
-								</Link>
+									to='/plan'>
+									Plan
+								</Link>}
+								{user&&<Link
+									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
+									to='/addplan'>
+									AddPlan
+								</Link>}
 
 								{user && <Link
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'

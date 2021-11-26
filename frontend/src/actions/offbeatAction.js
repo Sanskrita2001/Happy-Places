@@ -29,9 +29,13 @@ export const addOffbeatPlaces = (formData) => async(dispatch) => {
         dispatch({
             type: ADD_OFFBEAT_REQUEST
         })
+        const user = JSON.parse(localStorage.getItem('userInfo'))
+        const token = user.token
+        console.log(user.token)
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             }
         }
         const {data} = await axios.post('/api/v1/offbeat', formData, config)

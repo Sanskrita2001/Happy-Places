@@ -1,9 +1,15 @@
 import { useState } from 'react'
 import { Transition } from '@headlessui/react'
 import { Link } from 'react-router-dom'
-
+import {logout}from '../actions/userActions'
+import {useDispatch} from 'react-redux'
 const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false)
+	const user = JSON.parse(localStorage.getItem('userInfo'))
+	const dispatch = useDispatch()
+	const logoutFunc = () => {
+		dispatch(logout())
+	}
 	return (
 		<>
 			<nav className='p-5 bg-dark fixed w-full z-30 top-0'>
@@ -91,8 +97,8 @@ const Navbar = () => {
 
 								<Link
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
-									to='/about'>
-									About
+									to='/offbeat'>
+									Offbeat
 								</Link>
 
                                 <Link
@@ -101,23 +107,23 @@ const Navbar = () => {
 									Team
 								</Link>
 
-								<Link
+								{user && <Link
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
-                                    to='/contact'>
-									Contact Us
-								</Link>
+                                    to='/' onClick={logoutFunc}>
+									Logout
+								</Link>}
 
-								<Link
+								{!user && <Link
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
                                     to='/register'>
 									Register
-								</Link>
+								</Link>}
 
-								<Link
+								{!user && <Link
 									className='text-white block px-3 py-2 rounded-md text-base font-medium font-sans'
                                     to='/login'>
 									Login
-								</Link>
+								</Link>}
 
 								{/* <Link
 									href='#'

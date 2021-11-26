@@ -8,6 +8,10 @@ const OffBeatSchema = new mongoose.Schema({
     description: {
         type: String
     },
+    photo: {
+        type: String,
+        default: 'https://gotraveldiscoverer.files.wordpress.com/2016/08/kolakham1.jpg'
+    },
     place:{
         type: String,
         required: true

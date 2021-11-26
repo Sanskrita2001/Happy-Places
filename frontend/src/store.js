@@ -7,6 +7,7 @@ import {getSingleSubPlaceReducer, getSubPlacesReducer} from './reducers/subPlace
 import {getSpotsReducer} from './reducers/spotReducer'
 import {userRegisterReducer, sendOtpReducer, userVerifyReducer} from './reducers/userReducer'
 import {getOffbeatPlacesReducer, addOffbeatPLacesReducer} from './reducers/OffbeatReducer'
+import {getPlanReducer, addPlanReducer} from './reducers/planReducer'
 
 const reducer = combineReducers({
       getAllPlaces: getPlacesReducer,
@@ -18,7 +19,9 @@ const reducer = combineReducers({
       sendOtp: sendOtpReducer,
       userVerify: userVerifyReducer,
       getOffbeatPlaces: getOffbeatPlacesReducer,
-      addOffbeatPLaces: addOffbeatPLacesReducer
+      addOffbeatPLaces: addOffbeatPLacesReducer,
+      getPlan: getPlanReducer,
+      addPlan: addPlanReducer
 })
 
 const userInfoFromStorage = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null

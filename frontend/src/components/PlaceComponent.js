@@ -7,7 +7,9 @@ const PlaceComponent = ({ place }) => {
 	const onClick = () => {
 		history.push(`/subplace/${place.id}`)
 	}
-	const onClickMap = () => {}
+	const onClickMap = () => {
+		history.push(`/map?lat=${place.location.coordinates[0]}&long=${place.location.coordinates[1]}`)
+	}
 	console.log(place)
 	return (
 		<div className='flip rounded-3xl overflow-hidden shadow-lg'>

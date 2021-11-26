@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import Map from "./components/Map"
 
 import HomeScreen from './screens/HomeScreen'
 import PlaceScreen from './screens/PlaceScreen'
@@ -18,9 +19,9 @@ import { useHistory } from 'react-router-dom'
 const AuthRoutes = () => {
 	const history = useHistory();
   
-	useEffect(() => {
-	  history.push("/login");
-	}, []);
+	// useEffect(() => {
+	//   history.push("/login");
+	// }, []);
   
 	return (
 	  <>
@@ -46,6 +47,7 @@ const App = () => {
 		<Router>
 			<Navbar/>	
 				<Route exact path='/' component={HomeScreen}/>
+				<Route exact path='/map' component={Map}/>
 				<Route exact path='/places' component={PlaceScreen}/>
 				<Route exact path='/subplace/:id' component={SubPlace}/>
 				<Route exact path='/spots/:id' component={SpotScreen}/>
